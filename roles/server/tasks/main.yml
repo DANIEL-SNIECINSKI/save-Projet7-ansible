@@ -9,12 +9,11 @@
   become: yes
   with_items:
     - apache2
-    - mysql-server
     - php-mysql
     - php
     - libapache2-mod-php
     - python-mysqldb
 
-   
+
 
 
