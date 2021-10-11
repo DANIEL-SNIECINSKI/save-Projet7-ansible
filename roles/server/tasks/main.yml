@@ -13,7 +13,8 @@
     - php
     - libapache2-mod-php
     - python-mysqldb
+    - mysql-client
 
-   
+
 
 

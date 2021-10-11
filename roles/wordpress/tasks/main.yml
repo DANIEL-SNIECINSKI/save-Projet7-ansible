@@ -1,8 +1,15 @@
 ---
+- name: Install WP-CLI
+  become: true
+  get_url:
+    url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    dest: /usr/local/bin/wp
+    mode: a+x
+
 # tasks file for wordpress
 - name: Download WordPress
-  get_url: 
-    url=https://wordpress.org/latest.tar.gz 
+  get_url:
+    url=https://wordpress.org/latest.tar.gz
     dest=/tmp/wordpress.tar.gz
     validate_certs=no
 
@@ -10,12 +17,29 @@
   unarchive: src=/tmp/wordpress.tar.gz dest=/var/www/ copy=no
   become: yes
 
+#- name: Is WordPress installed?
+#  become: yes
+#  command: wp core is-installed --allow-root
+#  args:
+#    chdir: "/var/www/wordpress/"
+#  register: wordpress_is_installed
+#  ignore_errors: True
+
+- name: Configure WordPress
+  become: yes
+  command: wp core config
+    --path="/var/www/wordpress"
+    --dbname="{{ wp_mysql_db }}"
+    --dbuser="{{ wp_mysql_user }}"
+    --dbpass="{{ wp_mysql_password }}"
+    --dbhost="{{ wp_mysql_host }}"
+    --allow-root
+
 - name: Update default Apache site
   become: yes
-  lineinfile: 
-    dest=/etc/apache2/sites-enabled/000-default.conf 
+  lineinfile:
+    dest=/etc/apache2/sites-enabled/000-default.conf
     regexp="(.)+DocumentRoot /var/www/html"
     line="DocumentRoot /var/www/wordpress"
   notify:
     - restart apache
-

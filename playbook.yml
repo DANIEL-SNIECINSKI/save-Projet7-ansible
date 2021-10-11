@@ -1,15 +1,16 @@
 - hosts: all
   gather_facts: False
-  
+  remote_user: admin
+  vars:
+    wp_mysql_db: "wordpress"
+    wp_mysql_user: "admin"
+    wp_mysql_password: "wordpress"
+    wp_mysql_host: "terraform-20211011093615935700000002.cwpidsov1753.eu-west-3.rds.amazonaws.com"
   tasks:
-  - name: install python 3
-    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-
-- hosts: wordpress
-
+    - name: install python 3
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
   roles:
     - server
     - php
     - wordpress
 
-    
