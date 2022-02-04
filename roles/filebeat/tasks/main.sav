@@ -1,0 +1,19 @@
+---
+# tasks file for filebeat
+
+# ====Install filebeat=====
+
+- name: Install filebeat
+  apt:
+    name: filebeat
+    update_cache: yes
+    force_apt_get: yes
+#    become: yes
+
+# ====Starting filebeat service====
+
+- name: Starting filebeat
+  service:
+    name: filebeat
+    state: started
+    enable: yes

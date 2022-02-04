@@ -1,3 +1,4 @@
 [wordpress]
-13.36.176.212 ansible_python_interpreter=/usr/bin/python3
+# 15.236.43.171 ansible_python_interpreter=/usr/bin/python3
+15.237.142.177 ansible_python_interpreter=/usr/bin/python3
 

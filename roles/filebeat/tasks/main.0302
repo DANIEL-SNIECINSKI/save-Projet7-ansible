@@ -1,0 +1,30 @@
+---
+# tasks file for filebeat
+
+# add key
+- name: import the elasticsearch apt key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  become: yes
+  become_method: "sudo"
+
+ # add repo
+- name: install elasticsearch 7.x deb repository
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+    state: present
+    update_cache: yes
+    become: yes
+    become_method: "sudo"
+
+# filebeat install
+- name: installation de FileBeat
+  apt:
+    name: filebeat
+    state: present
+    update_cache: yes  
+    become: yes
+    become_method: "sudo" 
+
+

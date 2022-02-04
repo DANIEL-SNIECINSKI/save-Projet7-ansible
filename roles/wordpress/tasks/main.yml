@@ -1,4 +1,5 @@
 ---
+#  Installation de WP-CLI qui fourni une interface en ligne de commande pour administrer wordpress 
 - name: Install WP-CLI
   become: true
   get_url:
@@ -16,14 +17,6 @@
 - name: Extract WordPress
   unarchive: src=/tmp/wordpress.tar.gz dest=/var/www/ copy=no
   become: yes
-
-#- name: Is WordPress installed?
-#  become: yes
-#  command: wp core is-installed --allow-root
-#  args:
-#    chdir: "/var/www/wordpress/"
-#  register: wordpress_is_installed
-#  ignore_errors: True
 
 - name: Configure WordPress
   become: yes

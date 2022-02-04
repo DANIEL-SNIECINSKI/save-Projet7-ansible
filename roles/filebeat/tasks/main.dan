@@ -1,0 +1,22 @@
+---
+# tasks file for filebeat
+
+- name: Ajout de la clé de dépôt des Beats
+  apt_key:
+     state: present
+     key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    
+- name: Installation de FileBeat
+  apt:
+    name: filebeat-7.16.2
+    state: present
+    update_cache: yes    
+  
+- name: Activation et Démarrage du service FileBeat
+  service:
+    name: filebeat
+    state: started
+    enabled: yes
+
+
+

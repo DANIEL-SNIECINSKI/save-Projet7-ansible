@@ -1,0 +1,37 @@
+---
+# tasks file for filebeat
+
+# dépendancies install
+- name: install role dependencies
+  apt:
+      name: apt-transport-https,ca-certificates,gnupg
+      state: present
+      autoclean: true
+
+# add key
+- name: import the elasticsearch apt key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  become: yes
+
+ # add repo
+- name: install elasticsearch 7.x deb repository
+  become: yes
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+    state: present
+    
+    
+
+# filebeat install
+- name: installation de FileBeat
+  become: yes
+  apt:
+    name: filebeat
+    state: present
+    update_cache: yes  
+    
+
+
+
