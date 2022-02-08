@@ -1,5 +1,5 @@
 ---
-# tasks file for filebeat
+# tasks file for filebeat and metricbeat
 
 # dépendancies install
 - name: install role dependencies
@@ -21,9 +21,7 @@
   apt_repository:
     repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
     state: present
-    
-    
-
+      
 # filebeat install
 - name: installation de FileBeat
   become: yes
@@ -32,6 +30,11 @@
     state: present
     update_cache: yes  
     
-
-
+# metricbeat install
+- name: installation de Metricbeat
+  become: yes
+  apt:
+    name: metricbeat
+    state: present
+    update_cache: yes 
 
