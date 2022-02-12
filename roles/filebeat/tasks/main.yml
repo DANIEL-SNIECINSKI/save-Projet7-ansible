@@ -28,8 +28,16 @@
   apt:
     name: filebeat
     state: present
-    update_cache: yes  
-    
+    update_cache: yes
+
+# enable filebeat service
+- name: Activation et Démarrage du service FileBeat
+  become: yes
+  service:
+    name: filebeat
+    state: started
+    enabled: yes
+
 # metricbeat install
 - name: installation de Metricbeat
   become: yes
@@ -38,3 +46,10 @@
     state: present
     update_cache: yes 
 
+# enable metricbeat service
+- name: Activation et Démarrage du service Metricbeat
+  become: yes
+  service:
+    name: metricbeat
+    state: started
+    enabled: yes
