@@ -30,6 +30,13 @@
     state: present
     update_cache: yes
 
+# filebeat configuration
+- name: Configuration de Filebeat
+  become: yes
+  template: 
+    src: filebeat.j2
+    dest: /etc/filebeat/filebeat.yml
+
 # enable filebeat service
 - name: Activation et Démarrage du service FileBeat
   become: yes
@@ -45,6 +52,13 @@
     name: metricbeat
     state: present
     update_cache: yes 
+
+ # metricbeat configuration
+- name: Configuration de Filebeat
+  become: yes
+  template: 
+    src: metricbeat.j2
+    dest: /etc/metricbeat/metricbeat.yml   
 
 # enable metricbeat service
 - name: Activation et Démarrage du service Metricbeat

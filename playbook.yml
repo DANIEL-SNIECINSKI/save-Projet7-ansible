@@ -6,7 +6,8 @@
     wp_mysql_db: "wordpress"
     wp_mysql_user: "admin"
     wp_mysql_password: "wordpress"
-    wp_mysql_host: "terraform-20220211082115243200000001.cczxixzntjlx.eu-west-3.rds.amazonaws.com"
+    wp_mysql_host: "terraform-20220215090158678700000001.cczxixzntjlx.eu-west-3.rds.amazonaws.com"
+    opensearch_host: "search-opensearch-s3whszymy7efsnyy7cc5cy6tr4.eu-west-3.es.amazonaws.com:443"
   tasks:
     - name: install python 3
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
