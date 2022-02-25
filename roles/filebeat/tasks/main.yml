@@ -16,16 +16,18 @@
   become: yes
 
  # add repo
-- name: install elasticsearch 7.x deb repository
+- name: install elasticsearch 8.x deb repository
   become: yes
   apt_repository:
-    repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+#    repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
+    repo: deb https://artifacts.elastic.co/packages/oss-6.x/apt stable main
     state: present
       
 # filebeat install
 - name: installation de FileBeat
   become: yes
   apt:
+#    name: filebeat=8.0.0
     name: filebeat
     state: present
     update_cache: yes
@@ -49,6 +51,7 @@
 - name: installation de Metricbeat
   become: yes
   apt:
+#    name: metricbeat=8.0.0
     name: metricbeat
     state: present
     update_cache: yes 
